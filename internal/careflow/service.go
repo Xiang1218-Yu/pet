@@ -4,10 +4,11 @@ func Summarize(in []Checkin) Report {
 	r := Report{Days: map[string]int{}}
 	seen := map[string]bool{}
 	for _, c := range in {
-		if !accepted(c) || seen[c.Pet] {
+		k := c.identity()
+		if !accepted(c) || seen[k] {
 			continue
 		}
-		seen[c.Pet] = true
+		seen[k] = true
 		r.Days[dayKey(c.At)]++
 	}
 	return r
