@@ -4,10 +4,11 @@ func merge(visits []Visit) []Visit {
 	seen := map[string]bool{}
 	out := []Visit{}
 	for _, v := range visits {
-		if seen[v.Kind] {
+		key := v.identity()
+		if seen[key] {
 			continue
 		}
-		seen[v.Kind] = true
+		seen[key] = true
 		out = append(out, v)
 	}
 	return out

@@ -14,6 +14,7 @@ func Build(visits []Visit, from time.Time) []Day {
 			if sameDay(result[i].Date, v.At) {
 				result[i].Visits = append(result[i].Visits, v)
 				found = true
+				break
 			}
 		}
 		if !found {
