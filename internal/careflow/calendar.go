@@ -2,4 +2,6 @@ package careflow
 
 import "time"
 
-func sameDay(a, b time.Time) bool { return a.YearDay() == b.YearDay() }
+func sameDay(a, b time.Time) bool {
+	return a.Year() == b.Year() && a.YearDay() == b.YearDay()
+}
