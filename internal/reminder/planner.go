@@ -4,13 +4,16 @@ import "time"
 
 func Build(rules []Rule, start time.Time, days int) []Reminder {
 	var result []Reminder
+	if days < 0 {
+		return result
+	}
 	for offset := 0; offset <= days; offset++ {
 		day := start.AddDate(0, 0, offset)
 		for _, rule := range rules {
 			if !activeOn(rule, day) {
 				continue
 			}
-			at := time.Date(day.Year(), day.Month(), day.Day(), rule.Hour, rule.Minute, 0, 0, time.UTC)
+			at := rule.at(day)
 			if at.Before(start) {
 				continue
 			}

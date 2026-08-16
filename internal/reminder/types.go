@@ -11,3 +11,7 @@ type Reminder struct {
 	Name string
 	At   time.Time
 }
+
+func (r Rule) at(day time.Time) time.Time {
+	return time.Date(day.Year(), day.Month(), day.Day(), r.Hour, r.Minute, 0, 0, day.Location())
+}
